@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Visibility Audit</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root { --accent:#3A3FD1; --ink:#12151C; --mute:#5A6070; --line:#E3E6EE; --bg:#F6F7F9; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family:'DM Sans',system-ui,sans-serif; color:var(--ink); background:var(--bg); font-variant-numeric:tabular-nums; }
+  html { scroll-behavior:smooth; }
+  a:focus-visible, button:focus-visible { outline:2px solid var(--ink); outline-offset:2px; }
+  .banner { background:var(--ink); color:#fff; padding:10px 24px; font-size:13px; text-align:center; }
+  .wrap { max-width:1200px; margin:0 auto; padding:24px 24px 72px; display:flex; flex-direction:column; gap:24px; }
+  .row { display:flex; flex-wrap:wrap; gap:24px; }
+  .card { background:#fff; border:1px solid var(--line); border-radius:12px; padding:24px; }
+  .eyebrow { font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--mute); }
+  .header { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:16px; }
+  .logo { display:flex; align-items:center; gap:12px; font-size:16px; font-weight:700; }
+  .btn { display:inline-flex; align-items:center; justify-content:center; min-height:44px; padding:0 20px; border-radius:26px; background:var(--accent); color:#fff; font-size:14px; font-weight:700; text-decoration:none; }
+  h1 { margin:0; font-size:32px; line-height:1.15; }
+  .sub { font-size:15px; color:var(--mute); }
+  .big { font-size:88px; line-height:1; font-weight:700; color:var(--accent); }
+  .chip { align-self:flex-start; font-size:13px; background:#EEF0F4; border-radius:6px; padding:6px 10px; }
+  .track { height:12px; background:#E6E8EE; border-radius:6px; }
+  .fill { height:100%; border-radius:6px; }
+  .line { display:flex; justify-content:space-between; gap:12px; font-size:15px; }
+  .area { padding:12px 0; border-top:1px solid var(--line); }
+  .area .track { height:8px; margin-top:8px; border-radius:4px; }
+  .cta { background:var(--ink); color:#fff; border-radius:12px; padding:32px 24px; display:flex; flex-wrap:wrap; gap:24px; align-items:center; justify-content:space-between; }
+  .cta .btn-w { display:flex; align-items:center; justify-content:center; min-height:52px; padding:0 24px; border-radius:26px; background:#fff; color:var(--ink); font-size:16px; font-weight:700; text-decoration:none; }
+</style>
+</head>
+<body>
+<div class="banner">Anteprima dimostrativa · i dati e i nomi dei competitor sono di esempio</div>
+<div class="wrap">
+
+  <div class="header">
+    <div class="logo">
+      <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="8" fill="#3A3FD1"/><circle cx="13" cy="13" r="6" fill="none" stroke="#fff" stroke-width="2"/><path d="M17.5 17.5L21 21" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+      AI Visibility Audit
+    </div>
+    <a class="btn cta-link" href="#interesse">Voglio il report per il mio brand</a>
+  </div>
+
+  <div>
+    <h1 id="brand">Brand Demo</h1>
+    <div class="sub">Come gli assistant AI ti raccomandano rispetto ai competitor · 42 query · 3 assistant · 5 esecuzioni per query</div>
+  </div>
+
+  <div class="row">
+    <div class="card" style="flex:1 1 320px;display:flex;flex-direction:column;gap:12px">
+      <div class="eyebrow">AI Visibility Score</div>
+      <div class="big">12%</div>
+      <div style="font-size:15px;line-height:1.5"><span class="brandName">Brand Demo</span> compare in 76 risposte su 630 testate.</div>
+      <div class="chip">Intervallo tra le esecuzioni: 9–15%</div>
+      <div class="sub" style="font-size:14px;line-height:1.5">Il più visibile, <span id="leadName">Competitor A</span>, compare nel 31% delle risposte.</div>
+    </div>
+    <div class="card" style="flex:2 1 460px;display:flex;flex-direction:column;gap:16px">
+      <div class="eyebrow">Visibilità a confronto</div>
+      <div id="ranking" style="display:flex;flex-direction:column;gap:16px"></div>
+    </div>
+  </div>
+
+  <div class="row" id="assistants"></div>
+
+  <div class="row">
+    <div class="card" style="flex:2 1 460px">
+      <div class="eyebrow" style="margin-bottom:8px">Visibilità per tema di ricerca</div>
+      <div id="areas"></div>
+    </div>
+    <div class="card" style="flex:1 1 300px;align-self:flex-start;display:flex;flex-direction:column;gap:12px">
+      <div class="eyebrow">Come misuriamo</div>
+      <div style="font-size:15px;line-height:1.55">42 query realistiche, ognuna ripetuta 5 volte su 3 assistant: 630 risposte analizzate.</div>
+      <div class="sub" style="line-height:1.55">Le risposte AI cambiano da un’esecuzione all’altra. Per questo mostriamo un intervallo e non un valore singolo.</div>
+    </div>
+  </div>
+
+  <div class="cta" id="interesse">
+    <div style="flex:1 1 420px;display:flex;flex-direction:column;gap:12px">
+      <div style="font-size:26px;line-height:1.2;font-weight:700">Vuoi vedere questo report per il tuo brand?</div>
+      <div style="font-size:15px;line-height:1.55;color:#D5D8E2">Stiamo selezionando alcuni brand fashion per un primo audit di prova. Con il report vedresti:</div>
+      <div style="display:flex;flex-direction:column;gap:6px;font-size:15px;line-height:1.5">
+        <div>1 · quanto compari rispetto ai competitor su ChatGPT, Gemini e Perplexity</div>
+        <div>2 · dove gli assistant ti descrivono in modo errato o incompleto</div>
+        <div>3 · quali interventi possono migliorare la tua visibilità</div>
+      </div>
+    </div>
+    <div style="flex:0 1 300px;display:flex;flex-direction:column;gap:10px">
+      <a class="btn-w cta-link" id="formLink" href="#" target="_blank" rel="noopener">Sono interessato</a>
+      <div style="font-size:13px;color:#D5D8E2;text-align:center">Lasci la tua email, ci vogliono 30 secondi. Nessun impegno.</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // ====== DA MODIFICARE ======
+  // Link del form Tally (email + nome brand). Incollalo qui.
+  var FORM_URL = "https://tally.so/r/INCOLLA-QUI-IL-VOSTRO-FORM";
+  // ===========================
+
+  // Personalizzazione per azienda via link: ?brand=NomeBrand&a=CompA&b=CompB&c=CompC
+  var q = new URLSearchParams(location.search);
+  var brand = q.get("brand") || "Brand Demo";
+  var A = q.get("a") || "Competitor A";
+  var B = q.get("b") || "Competitor B";
+  var C = q.get("c") || "Competitor C";
+  var ACCENT = "#3A3FD1", GREY = "#9AA0B2";
+
+  document.title = "AI Visibility Audit · " + brand;
+  document.getElementById("brand").textContent = brand;
+  document.getElementById("leadName").textContent = A;
+  document.querySelectorAll(".brandName").forEach(function (e) { e.textContent = brand; });
+
+  // Link del form (con il nome del brand, così sapete chi ha cliccato)
+  var sep = FORM_URL.indexOf("?") === -1 ? "?" : "&";
+  document.getElementById("formLink").href = FORM_URL + sep + "brand=" + encodeURIComponent(brand);
+
+  function el(tag, css, html) {
+    var e = document.createElement(tag);
+    if (css) e.style.cssText = css;
+    if (html !== undefined) e.innerHTML = html;
+    return e;
+  }
+  function esc(s) { var d = document.createElement("div"); d.textContent = s; return d.innerHTML; }
+
+  // Ranking
+  var ranking = [
+    { n: brand, v: 12, me: true }, { n: A, v: 31 }, { n: B, v: 24 }, { n: C, v: 8 }
+  ].sort(function (a, b) { return b.v - a.v; });
+  var rk = document.getElementById("ranking");
+  ranking.forEach(function (r) {
+    var w = el("div", "display:flex;flex-direction:column;gap:6px");
+    w.innerHTML =
+      '<div class="line"><div style="font-weight:500">' + esc(r.n) +
+      (r.me ? '<span style="color:#5A6070;font-weight:400"> · il tuo brand</span>' : '') +
+      '</div><div style="font-weight:700">' + r.v + '%</div></div>' +
+      '<div class="track"><div class="fill" style="width:' + (r.v * 2.2) + '%;background:' + (r.me ? ACCENT : GREY) + '"></div></div>';
+    rk.appendChild(w);
+  });
+
+  // Per assistant
+  [["ChatGPT", "14%", 34], ["Gemini", "12%", 31], ["Perplexity", "9%", 28]].forEach(function (a) {
+    var c = el("div", "flex:1 1 220px;padding:20px 24px");
+    c.className = "card";
+    c.innerHTML = '<div class="eyebrow">' + a[0] + '</div>' +
+      '<div style="font-size:40px;font-weight:700;margin-top:8px">' + a[1] + '</div>' +
+      '<div class="sub" style="font-size:14px;margin-top:4px">' + esc(A) + ' · ' + a[2] + '%</div>';
+    document.getElementById("assistants").appendChild(c);
+  });
+
+  // Aree
+  var areas = [["Streetwear italiano", 8, 26], ["Prezzo sotto 150 €", 6, 15], ["Alternative ai competitor", 7, 11],
+               ["Felpe e hoodie premium", 8, 8], ["Made in Europe", 7, 5], ["Moda sostenibile", 6, 2]];
+  areas.forEach(function (a, i) {
+    var d = el("div"); d.className = "area";
+    var tag = i === 0 ? "Area più forte" : (i === areas.length - 1 ? "Area più debole" : "");
+    d.innerHTML =
+      '<div class="line" style="align-items:baseline"><div style="font-weight:500">' + a[0] +
+      '<span style="font-size:13px;color:#5A6070;font-weight:400"> · ' + a[1] + ' query</span></div>' +
+      '<div style="font-weight:700">' + a[2] + '%</div></div>' +
+      '<div class="track"><div class="fill" style="width:' + (a[2] * 3.2) + '%;background:' + ACCENT + '"></div></div>' +
+      (tag ? '<div style="margin-top:6px;font-size:12px;font-weight:700;color:#5A6070">' + tag + '</div>' : '');
+    document.getElementById("areas").appendChild(d);
+  });
+</script>
+</body>
+</html>
